@@ -120,20 +120,28 @@ function BookAppointment({cast}) {
       </DialogDescription>
     </DialogHeader>
     <DialogFooter className="sm:justify-end">
-          <DialogClose asChild >
-            <>
-            <Button type="button" 
-            className="text-red-500 border-red-500"
-            variant="outline">
-              Close
-            </Button>
-            <Button type="button" disabled={!(date&&selectedTimeSlot)}
-            onClick={()=>saveBooking()}
-            >
-              Submit
-            </Button>
-            </>
-          </DialogClose>
+          <DialogClose asChild>
+  {({ close }) => (
+    <>
+      <Button
+        type="button"
+        className="text-red-500 border-red-500"
+        variant="outline"
+        onClick={close} // Add onClick handler to close the dialog
+      >
+        Close
+      </Button>
+      <Button
+        type="button"
+        disabled={!(date && selectedTimeSlot)}
+        onClick={saveBooking}
+      >
+        Submit
+      </Button>
+    </>
+  )}
+</DialogClose>
+
         </DialogFooter>
   </DialogContent>
 </Dialog>
