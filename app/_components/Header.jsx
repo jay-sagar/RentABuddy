@@ -23,11 +23,6 @@ function Header() {
       path: "/",
     },
     {
-      id: 2,
-      name: "Explore",
-      path: "/",
-    },
-    {
       id: 3,
       name: "Contact Us",
       path: "/",
