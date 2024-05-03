@@ -1,19 +1,28 @@
 const { default: axios } = require("axios");
+import middleware from './middleware'; // Assuming middleware.js is in the same directory
 
-const API_KEY=process.env.NEXT_PUBLIC_STRAPI_API_KEY;
+const API_KEY = process.env.NEXT_PUBLIC_STRAPI_API_KEY;
 
 const axiosClient = axios.create({
-    baseURL:'https://rentabuddy.onrender.com/api',
-    headers:{
-        'Authorization':`Bearer ${API_KEY}`
-    }
-})
+  baseURL: 'https://rentabuddy-strapi.onrender.com/api',
+  headers: {
+    Authorization: `Bearer ${API_KEY}`
+  }
+});
 
-const getCategory=()=>axiosClient.get('/categories?populate=*');
+const getCategory = async () => {
+  // Call middleware if applicable (optional, see explanation below)
+  // if (/* condition for authentication required */) {
+  //   await middleware(req); // Assuming middleware accepts the request object
+  // }
 
-const getCastList=()=>axiosClient.get('/casts?populate=*');
+  const response = await axiosClient.get('/categories?populate=*');
+  return response.data;
+};
 
-const getCastByCategory = (category) =>axiosClient.get('/casts?filters[categories][Name][$in]='+category+"&populate=*");
+const getCastList = () => axiosClient.get('/casts?populate=*');
+
+const getCastByCategory = (category) => axiosClient.get('/casts?filters[categories][Name][$in]='+category+"&populate=*");
 
 const getCastById = (id) => axiosClient.get('/casts/'+id+"?populate=*")
 
@@ -26,12 +35,12 @@ const getUserBookingList = (userEmail) => axiosClient.get("/appointments?[filter
 const deleteBooking = (id) => axiosClient.delete('/appointments/'+id);
 
 export default {
-    getCategory,
-    getCastList,
-    getCastByCategory,
-    getCastById,
-    bookAppointment,
-    // sendEmail,
-    getUserBookingList,
-    deleteBooking
-}
+  getCategory,
+  getCastList,
+  getCastByCategory,
+  getCastById,
+  bookAppointment,
+  // sendEmail,
+  getUserBookingList,
+  deleteBooking
+};
