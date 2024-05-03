@@ -31,7 +31,7 @@ export default {
     getCastByCategory,
     getCastById,
     bookAppointment,
-    sendEmail,
+    // sendEmail,
     getUserBookingList,
     deleteBooking
 }
