@@ -1,12 +1,12 @@
 const nextConfig = {
     async headers() {
       return [
-        {
-          reactStrictMode: false,
-          images: {
-            domains: ["res.cloudinary.com", "lh3.googleusercontent.com"],
-            unoptimized: true,
-          },
+        // {
+        //   reactStrictMode: false,
+        //   images: {
+        //     domains: ["res.cloudinary.com", "lh3.googleusercontent.com"],
+        //     unoptimized: true,
+        //   },
 
           // matching all API routes
           source: "/api/:path*",
