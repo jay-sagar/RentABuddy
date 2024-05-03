@@ -75,9 +75,9 @@ function Header() {
           </PopoverContent>
         </Popover>
        : 
-        <RegisterLink>
+        <LoginLink>
           <Button>Get Started</Button>
-        </RegisterLink>
+        </LoginLink>
       }
     </div>
   );
