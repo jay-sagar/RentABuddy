@@ -122,7 +122,7 @@ function BookAppointment({cast}) {
     <DialogFooter className="sm:justify-end">
           <DialogClose asChild>
   {({ close }) => (
-    <>
+    <div className="flex justify-between">
       <Button
         type="button"
         className="text-red-500 border-red-500"
@@ -138,7 +138,7 @@ function BookAppointment({cast}) {
       >
         Submit
       </Button>
-    </>
+    </div>
   )}
 </DialogClose>
 
