@@ -5,10 +5,10 @@ function Footer() {
   return (
     <footer className="bg-gray-100">
   <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8 justify-center text-center flex flex-col items-center ">
-    <Image src='/logo.svg'
+    <Image src='/logo.png'
     alt='logo'
-    width={200}
-    height={100} 
+    width={180}
+    height={80} 
     />
 
     <p className="mx-auto mt-6 max-w-md text-center leading-relaxed text-gray-500">
