@@ -41,12 +41,15 @@ function CategoryList() {
           <CommandGroup heading="Suggestions">
             {categoryList &&
               categoryList.map((item, index) => (
-                <CommandItem key={index}>
-                  <Link href={'search/' + item.attributes.Name} className={`p-2 flex gap-2 text-[14px] text-red-600 items-center rounded-md cursor-pointer w-full ${category==item.attributes.Name && 'bg-red-100'}`}>
-                    <Image src={item.attributes?.Icon?.data.attributes?.url} alt="icon" width={25} height={25}/>
-                    <label>{item.attributes.Name}</label>
-                    </Link>
-                </CommandItem>
+                <CommandItem
+  key={index}
+  onClick={() => router.push(`/search/${item.attributes.Name}`)}
+>
+  <div className={`p-2 flex gap-2 text-[14px] text-red-600 items-center rounded-md cursor-pointer w-full ${category === item.attributes.Name && 'bg-red-100'}`}>
+    <Image src={item.attributes?.Icon?.data.attributes?.url} alt="icon" width={25} height={25} />
+    <label>{item.attributes.Name}</label>
+  </div>
+</CommandItem>
               ))}
           </CommandGroup>
         </CommandList>
