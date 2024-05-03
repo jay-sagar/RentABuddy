@@ -19,7 +19,7 @@ const getCastById = (id) => axiosClient.get('/casts/'+id+"?populate=*")
 
 const bookAppointment = (data) => axiosClient.post('/appointments', data);
 
-const sendEmail = (data) => axios.post('/api/sendEmail', data);
+// const sendEmail = (data) => axios.post('/api/sendEmail', data);
 
 const getUserBookingList = (userEmail) => axiosClient.get("/appointments?[filters][Email][$eq]="+userEmail+"&populate=[casts][image][populate][0]=url&populate=*");
 
