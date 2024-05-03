@@ -29,14 +29,6 @@ function CategorySearch() {
         Search Your Buddy and have a Appointment{" "}
       </h2>
 
-      <div className="flex w-full mt-3 max-w-sm items-center space-x-2">
-        <Input type="text" placeholder="Search..." />
-        <Button type="submit">
-          <Search className="h-4 w-4 mr-2" />
-          Search
-        </Button>
-      </div>
-
       {/* Display List Of Category */}
       <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
         {categoryList.length > 0
