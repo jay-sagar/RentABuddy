@@ -1,5 +1,4 @@
 const { default: axios } = require("axios");
-import middleware from "../api/middleware";
 
 const API_KEY=process.env.NEXT_PUBLIC_STRAPI_API_KEY;
 
