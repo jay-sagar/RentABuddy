@@ -1,7 +1,7 @@
 export function config(req) {
     return new Promise((resolve, reject) => {
       const { origin } = req.headers;
-      const allowedOrigins = ['https://your-domain.com', 'https://another-allowed-domain.com'];
+      const allowedOrigins = ['https://rentabuddy-strapi.onrender.com/'];
   
       if (allowedOrigins.includes(origin)) {
         req.headers['Access-Control-Allow-Origin'] = origin;
