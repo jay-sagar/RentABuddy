@@ -62,7 +62,7 @@ function BookAppointment({cast}) {
           // GlobalApi.sendEmail(data).then(resp=>{
           //   console.log(resp)
           // })
-          toast("Booking Confirmation sent on Email")
+          toast("Booking Confirmed!")
         }
       })
     }
