@@ -67,9 +67,11 @@ function BookAppointment({cast}) {
       })
     }
 
-  const isPastDay=(day)=>{
-    return day<=new Date();
-  }
+  const isPastDay = (day) => {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0); // Set the time to the beginning of the day (00:00:00)
+  return day < today;
+};
   return (
 <Dialog>
   <DialogTrigger>
