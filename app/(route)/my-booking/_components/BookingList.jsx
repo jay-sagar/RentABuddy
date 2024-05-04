@@ -1,65 +1,46 @@
-import React from 'react';
-import moment from 'moment';
-import CancelAppointment from './CancelAppointment';
-import GlobalApi from '@/app/_utils/GlobalApi';
-import { toast } from 'sonner';
+import { Button } from '@/components/ui/button'
+import { Calendar, Clock, MapPin } from 'lucide-react'
+import moment from 'moment'
+import Image from 'next/image'
+import React from 'react'
+import CancelAppointment from './CancelAppointment'
+import GlobalApi from '@/app/_utils/GlobalApi'
+import { toast } from 'sonner'
 
-function BookingList({ bookingList, updateRecord }) {
+function BookingList({ bookingList, expired, updateRecord }) {
+  
   const onDeleteBooking = (item) => {
     console.log(item);
     GlobalApi.deleteBooking(item.id).then(resp => {
       console.log(resp);
       if (resp) {
-        toast('Booking Deleted Successfully!');
+        toast('Booking Delete Successfully!');
         updateRecord();
       }
     });
   };
 
-  const today = moment().startOf('day');
-
-  const upcomingBookings = bookingList.filter(item => {
-    const bookingDate = moment(item.attributes.Date);
-    return bookingDate.isSameOrAfter(today);
-  });
-
-  const expiredBookings = bookingList.filter(item => {
-    const bookingDate = moment(item.attributes.Date);
-    return bookingDate.isBefore(today);
-  });
-
   return (
     <div>
-      {upcomingBookings.length > 0 && (
-        <>
-          <h2 className="font-semibold text-lg mt-6">Upcoming Bookings</h2>
-          {upcomingBookings.map((item, index) => (
-            <div key={index} className="border rounded-lg p-4 mt-4">
-              <h3 className="text-xl font-semibold">
-                {item.attributes.cast?.data?.attributes?.Name || 'Unknown Name'}
-                <CancelAppointment onContinueClick={() => onDeleteBooking(item)} />
-              </h3>
-              <p>Appointment On: {moment(item.attributes.Date).format('DD-MMM-YYYY')}</p>
-              <p>At Time: {item.attributes.Time}</p>
-            </div>
-          ))}
-        </>
-      )}
-
-      {expiredBookings.length > 0 && (
-        <>
-          <h2 className="font-semibold text-lg mt-6">Expired Bookings</h2>
-          {expiredBookings.map((item, index) => (
-            <div key={index} className="border rounded-lg p-4 mt-4">
-              <h3 className="text-xl font-semibold">
-                {item.attributes.cast?.data?.attributes?.Name || 'Unknown Name'}
-                <CancelAppointment onContinueClick={() => onDeleteBooking(item)} />
-              </h3>
-              <p>Appointment On: {moment(item.attributes.Date).format('DD-MMM-YYYY')}</p>
-              <p>At Time: {item.attributes.Time}</p>
-            </div>
-          ))}
-        </>
+      {bookingList.length > 0 ? bookingList.map((item, index) => (
+        <div key={index} className='flex gap-4 items-center border p-5 m-3 rounded-lg'>
+          <div className='flex flex-col gap-2 w-full'>
+            <h2 className='font-bold text-[18px] items-center flex justify-between'>
+              {item.attributes.cast?.data?.attributes?.Name || 'Unknown Name'}
+              {!expired && <CancelAppointment onContinueClick={() => onDeleteBooking(item)} />}
+            </h2>
+            <h2 className='flex gap-2'>
+              <Calendar className='text-primary h-5 w-5' />
+              Appointment On: {item.attributes.Date ? moment(item.attributes.Date).format('DD-MMM-YYYY') : 'Unknown Date'}
+            </h2>
+            <h2 className='flex gap-2'>
+              <Clock className='text-primary h-5 w-5' />
+              At Time : {item.attributes.Time || 'Unknown Time'}
+            </h2>
+          </div>
+        </div>
+      )) : (
+        <div className='h-[150px] w-full bg-slate-100 animate-pulse rounded-lg'></div>
       )}
     </div>
   );
